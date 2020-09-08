@@ -8,6 +8,7 @@ const letters = ["a","b","c"];
 
 console.log(letters[1]);
 
+
 // --------------------------------------
 // Exercise 2 - Array Positioning
 
@@ -15,7 +16,11 @@ const friends = [];
 
 // What a lonely array. Add at least 3 friend objects to it.  
 
-friends.push("Morten", "Søren", "Christian");
+friends.push(
+    {friend:"Morten"},
+    {friend: "Søren"}, 
+    {friend: "Christian"}
+    );
 console.log(friends);
 
 // --------------------------------------
@@ -87,15 +92,21 @@ let log1 = []
 for(let i = 0; i < numbers.length; i++){
     
     if(numbers[i] < 0 || numbers[i] > 6){
-        log1.push(numbers[i]);
+        console.log(numbers[i]);
     }
     else{
         discardedNumbers.push(numbers[i]);
     }
 }
-console.log({log1});
 console.log({discardedNumbers})
 
+//anden løsning
+numbers.map((num) => {
+    if(num < 0 || number > 6){
+        console.log(num);
+    }
+    else discardedNumbers.push(num);
+})
 
 // --------------------------------------
 
