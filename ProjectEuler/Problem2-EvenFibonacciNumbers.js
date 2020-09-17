@@ -14,9 +14,21 @@ var roof = 4000000
 
 var temp1 = 1;
 var temp2 = 2;
-var sum = 0;
+var tempSum = 3;
+var totalSum = 3;
 
-while (sum > roof){
-    sum = temp1 + temp2;
-    temp1 = sum;
+while (totalSum < 100){
+    console.log(totalSum)
+    if(temp2 > temp1){
+        tempSum += temp2;
+        totalSum = tempSum;
+    }
+    else {
+        totalSum += temp1;
+        tempSum += temp1;
+    }
+    
+
 }
+
+//console.log(sum)

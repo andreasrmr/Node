@@ -1,2 +1,12 @@
 hvorfor bruger vi aldrig var?
 pga. scope Mer?
+
+kald din app for app.js
+
+key:value pair.
+
+dot notation
+
+send data gennem browser - query strings og path vars.
+Hvis noget er privat kan man sende gennem body med POST gennem eksempelvis POSTMAN
+Dvs. data vil ikke blive vist i URL.
