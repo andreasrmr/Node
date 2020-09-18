@@ -17,7 +17,13 @@ let cars = [
     { id: "9", name: "Citroen"}
 ]
 console.log(cars)
+
+//id assignment
 let nextCarId = (Number(cars[cars.length-1].id) + 1)
+
+function getAvailableId() {
+    return (nextCarId++).toString()
+}
 
 function findIndex(id) {
     let index
@@ -42,8 +48,7 @@ app.get("/cars/:id", (req, res) => {
 })
 
 app.post("/cars", (req, res) => {
-    const carId = nextCarId.toString()
-    nextCarId++
+    const carId = getAvailableId()
     const newCar = { id: carId, name: req.body.name }
     cars.push(newCar)
     res.send({newCar})
