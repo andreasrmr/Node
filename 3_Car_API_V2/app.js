@@ -1,3 +1,4 @@
+const { query } = require('express')
 const express = require(`express`)
 const app = express()
 const port = 8080
@@ -26,6 +27,13 @@ con.end((error) => {
 })
 */
 
+//bruges til post body
+app.use(express.json())
+
+//brgues til ?
+app.use(express.urlencoded({extended: true}))
+
+
 app.get("/", (req, res) => {
     res.send("Nothing to see here")
 })
@@ -49,6 +57,32 @@ app.get("/cars/:id", (req, res) => {
         if(error) { throw error }
         const datarow = { id: rows[0].id, name: rows[0].name, color: rows[0].color }
         res.send(datarow)
+    })
+})
+
+app.post("/cars", (req, res) => {
+    const newCar = { name: req.body.name, color: req.body.color }    
+    con.query(`INSERT INTO cars SET ?`, newCar, (error, res) => {
+        if(error) { throw error }
+        console.log(`Car was added! Id: ${res.insertId}`)
+        
+    }) 
+})
+
+app.put("/cars/:id", (req, res) => {
+    const updatedCar = [ req.body.name, req.body.color, req.params.id ]
+    con.query(`UPDATE cars SET name = ?, color = ? WHERE id = ?`, updatedCar, (error, result) => {
+        if(error) { throw error }
+        console.log(`Changed ${result.changedRows} rows(s)`)
+        res.send({})
+    })
+})
+
+app.delete("/cars/:id", (req,res) => {
+    con.query(`DELETE FROM cars WHERE id = ?`, [req.params.id], (error, result) => {
+        if(error) { throw error }
+        console.log(`Deleted ${result.affectedRows} rows(s)`)
+        res.send({})
     })
 })
 
