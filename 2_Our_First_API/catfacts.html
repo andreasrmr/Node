@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Facts</title>
+</head>
+<body>
+    <h1>Welcome to cat facts</h1>
+    <table border = 1px solid black>
+        <tr>
+            <th>Fact ID</th>
+            <th>Fact</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>a fact about cats</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>another fact about cats</td>
+        </tr>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- jQuery way-->
+    <script>
+        $.get("https://cat-fact.herokuapp.com/facts", (response) => {
+            //console.log(response);
+        });
+    </script>
+
+    <!-- Homework 
+        1. Get cat facts by the way of $.ajax() -->
+    
+    <script>
+        $.ajax({
+            url: 'https://cat-fact.herokuapp.com/facts',
+            success : function(response){
+                //console.log(response);
+            }
+        });
+    </script>
+
+    <!-- 
+        2. Show the cat facts in the table. (brug jQuery til at injecte)
+    -->
+    <div>
+        Click me
+    </div>
+
+    <script>
+       
+        let result = (data) => {
+            $.ajax({
+                url: 'https://cat-fact.herokuapp.com/facts',
+                dataType: 'json',
+                type: 'GET',
+                contentType: 'application/json',
+                success: data
+            });     
+        };  
+        console.log(result);
+    </script>
+
+        <!-- 
+        Homework
+        1. Get cat facts by the way of $.ajax()
+        2. Show the cat facts in the table. (brug jQuery til at injecte)
+        3. Style it.
+        4. Bonus: Pagination
+        -->
+        
+
+    
+</body>
+</html

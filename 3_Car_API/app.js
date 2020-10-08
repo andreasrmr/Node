@@ -1,84 +1,62 @@
-const express = require("express")
-const app = express()
-const port = 8080
+const express = require("express");
+const app = express();
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-
-app.get("/", (req, res) => {
-    res.send("Nothing to see here")
-})
+app.use(express.json());
 
 let cars = [
-    { id: "1", name: "Mazda" },
-    { id: "2", name: "Mitsubishi"},
-    { id: "7", name: "Honda"},
-    { id: "8", name: "Audi"},
-    { id: "9", name: "Citroen"}
-]
-console.log(cars)
+    { id: 1, name: "brum brum" },
+    { id: 2, model: "Mitsubishi" }
+];
 
-//id assignment
-let nextCarId = (Number(cars[cars.length-1].id) + 1)
+let nextCarId = 3;
 
-function getAvailableId() {
-    return (nextCarId++).toString()
-}
-
-function findIndex(id) {
-    let index
-    for(let i = 0; i < cars.length; i++){
-        if(cars[i].id == id){
-            index = i
-            break
-        }
-    }
-    return index
-}
+app.get("/", (req, res) => {
+    return res.send({ data: "Welcome to the car API version 0.0.1" });
+});
 
 app.get("/cars", (req, res) => {
-    res.send(cars)
-})
+    return res.send({ data: cars });
+});
 
 app.get("/cars/:id", (req, res) => {
-    const carId = req.params.id
-    const index = findIndex(carId)
-    let car = cars[index]
-    res.send({car})
-})
+    const car = cars.find(car => car.id === Number(req.params.id));
+    return res.send({ data: car });
+});
 
 app.post("/cars", (req, res) => {
-    const carId = getAvailableId()
-    const newCar = { id: carId, name: req.body.name }
-    cars.push(newCar)
-    res.send({newCar})
-})
+    const newCar = req.body;
+    newCar.id = nextCarId++;
+    cars.push(newCar);
+    return res.send({ data: cars });
+});
 
-app.put("/cars/:id", (req, res) => {
-    const carId = req.params.id
-    const index = findIndex(carId)
-    const updatedCar = { id: carId, name: req.body.name}
-    if(index != undefined){
-        cars[index] = updatedCar   
-    }
-    else {
-        cars.push(updatedCar)
-    }
-    res.send({updatedCar})
-})
+//patch opdatere elementer i en række (mysql)
+//put opdatere hele rækken. 
+app.patch("/cars/:id", (req, res) => {
+    cars = cars.map(car => {
+        if(car.id === Number(req.params.id)) {
+            //id: car.id sættes til sidst så det ikke overskrives af req.body. (Brugeren må ikke kunne sætte id.)
+            return { ...car, ...req.body, id: car.id };
+        }
+        return car;
+    });
+
+    return res.send({ data: cars })
+});
 
 app.delete("/cars/:id", (req, res) => {
-    const carId = req.params.id
-    const index = findIndex(carId)
-    const deletedCar = cars.splice(index, 1)
-    res.send({deletedCar})
+    cars = cars.filter(car => car.id !== Number(req.params.id));
+    return res.send({ data: cars })
 })
+
+//kører på port 80 hvis process.env.port er undefined.
+const port = process.env.PORT || 80
+//kan også skrives med ternary
+//const port = process.env.PORT ? process.env.PORT : 80
 
 app.listen(port, (error) => {
-    if(error){
-        console.log("Something went wrong")
+    if (error) {
+        console.log("Error starting the server");
     }
-    console.log(`Server is running on port: ${port}`)
-})
-
-
+    console.log("Server started on port: ", Number(port));
+});

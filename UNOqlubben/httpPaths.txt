@@ -1,0 +1,11 @@
+HTTP            PATH            DESCRIPTION
+---------       ----------      ------------
+GET             /               Home 
+GET             /players        Modtag alle spillere.
+GET             /players/id     Modtag 1 spillere
+POST            /players        Opret 1 spiller
+POST            /games          Opret et spil
+PUT             /players/id     Opdater navn på spiller.
+DELETE          /players/id     Slet 1 spiller
+DELETE          /games/id       Slet 1 spil.
+

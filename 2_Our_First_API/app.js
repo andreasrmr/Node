@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express()
 const port = 8080
+const fetch = require("node-fetch")
 
 //gør at vi kan sende body med POST.
 //se evt. body-parser i npmjs 
@@ -11,9 +12,36 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
+
 //req = request, res = response.
 app.get("/", (req, res) => {
     return res.send("<h1>Hello</h1");
+});
+
+//server side redirect
+app.get("/greeting", (req, res) => {
+    return res.redirect("/");
+});
+
+//proxy
+app.get("/proxy", (req, res) => {
+    fetch("https://google.com")
+    .then(result => result.textConverted())
+    .then(body => {
+        return res.send(body)
+    })
+});
+
+app.get("/catfacts", (req, res) => {
+    return res.sendFile(__dirname + "/catfacts.html");
+})
+
+app.get("/documentation", (req, res) => {
+    return res.sendFile(__dirname + "/documentation.html");
+});
+
+app.get("/documentation2", (req, res) => {
+    return res.sendFile(__dirname + "/documentation2.html");
 });
 
 app.get("/me", (req, res) => {

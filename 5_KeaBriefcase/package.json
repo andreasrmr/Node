@@ -1,0 +1,24 @@
+{
+  "name": "keabriefcase",
+  "version": "0.0.1",
+  "description": "Easy file upload / File download",
+  "main": "app.js",
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "file",
+    "files",
+    "fileupload",
+    "upload",
+    "download",
+    "briefcase"
+  ],
+  "author": "Andreas Rømer",
+  "license": "MIT"
+}
