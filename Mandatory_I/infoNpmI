@@ -1,3 +1,5 @@
 npm init
 npm i pakke
 npm i pakke -g
+
+npm pakker
