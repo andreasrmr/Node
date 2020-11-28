@@ -32,7 +32,7 @@ app.post('/auth/token', (req, res) => {
         res.sendStatus(403)
     } 
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-        if(err) return res.sendStatus(403)
+        if(err) { return res.sendStatus(403) }
         const accessToken = generateAccessToken({ name: user.name })
         res.json({accessToken : accessToken})
     })
@@ -40,13 +40,14 @@ app.post('/auth/token', (req, res) => {
 
 //Login
 app.post("/auth/login", async (req, res) => {
+    try {
     const username = req.body.username;
     const result = await pool.execute('SELECT password FROM users WHERE username = ?',  [username] );
     //check if result is undefined or no result
     if(result[0][0] === undefined || result[0][0].length == 0){
         res.status(403).send("Username incorrect");
     }
-    try {
+    
         const hashedPassword = result[0][0].password
         if(await bcrypt.compare(req.body.password, hashedPassword)){
             //authenticated here. // pw correct        
@@ -60,7 +61,7 @@ app.post("/auth/login", async (req, res) => {
         }
         else {
             res.status(500).send("Password incorrect")
-        }
+        }rs
   
     } catch (err) {
         res.status(500).send("Something went wrong");
