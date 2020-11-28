@@ -52,17 +52,20 @@ router.get('/auth/posts', (req, res) => {
 
 //Login
 router.post("/auth/login", async (req, res) => {
-    try {
+    
         const username = req.body.username;
         const result = await pool.execute('SELECT password FROM users WHERE username = ?',  [username] );
-        const hashedPassword = result[0][0].password
+        console.log(result)
         //check if hashedPassword is not undefined
-        if(typeof hashedPassword != "undefined"){
-            console.log("got here4 ")
+        if(result[0][0] === undefined || result[0][0].length == 0){
+            res.status(403).send("Username incorrect");
+        }
+        try {
+            const hashedPassword = result[0][0].password
             if(await bcrypt.compare(req.body.password, hashedPassword)){
                 //authenticated here. // pw correct
                 
-                //JWT
+                //JWT create and give access token
                 const user = { name: username }
                 const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
                 res.json( { accessToken: accessToken })
@@ -71,15 +74,12 @@ router.post("/auth/login", async (req, res) => {
                 //res.sendFile(dirPath)
             }
             else {
-               res.status(500).send("Password incorrect")
+                res.status(500).send("Password incorrect")
             }
-        }
-        else {
-            res.sendStatus(403);
-        }     
-    } catch (err) {
-        res.status(500).send("Something went wrong");
-    }   
+      
+        } catch (err) {
+            res.status(500).send("Something went wrong");
+        }   
 });
 
 //Logout?
