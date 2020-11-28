@@ -12,6 +12,7 @@
   },
   "scripts": {
     "devStart": "nodemon app.js",
+    "devStartAuth": "nodemon authServer.js",
     "prodStart": "node app.js"
   }
 }

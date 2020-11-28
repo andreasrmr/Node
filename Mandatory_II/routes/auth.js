@@ -36,7 +36,7 @@ router.post("/auth/register", async (req, res) => {
 //JWT test
 const posts = [
     {
-        username: 'Kyle',
+        username: 'andreasrmr',
         title: 'Post1'
     },
     {
@@ -45,8 +45,9 @@ const posts = [
     }
 ]
 
-router.get('/auth/posts', (req, res) => {
-    res.json(posts);
+router.get('/auth/posts', authenticateToken, (req, res) => {
+    //only send posts for specific user
+    res.json(posts.filter(post => post.username === req.user.name ));
 })
 
 
@@ -55,8 +56,7 @@ router.post("/auth/login", async (req, res) => {
     
         const username = req.body.username;
         const result = await pool.execute('SELECT password FROM users WHERE username = ?',  [username] );
-        console.log(result)
-        //check if hashedPassword is not undefined
+        //check if result is undefined or no result
         if(result[0][0] === undefined || result[0][0].length == 0){
             res.status(403).send("Username incorrect");
         }
@@ -81,6 +81,22 @@ router.post("/auth/login", async (req, res) => {
             res.status(500).send("Something went wrong");
         }   
 });
+
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization']
+    //if we have an auth header return auth header token portion. otherwise return undefined
+    //Bearer TOKEN (splittes)
+    const token = authHeader && authHeader.split(' ')[1]
+    
+    if(token == null) return res.sendStatus(401);
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if(err) return res.sendStatus(403);
+        req.user = user;
+        next();
+    })
+
+}
 
 //Logout?
 
