@@ -1,0 +1,27 @@
+button {
+    font-family: inherit;
+    border: none;
+    background-color: #5CDB95;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    color: #05386B
+}
+
+body {
+    background-color: #5CDB95;
+}
+
+button:hover {
+    border-style: solid;
+}
+
+#content {
+color: #05386B;
+}
+
+img {
+    max-width: 50%;
+    height: auto;
+  }

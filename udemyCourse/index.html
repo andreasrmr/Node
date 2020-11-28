@@ -1,0 +1,44 @@
+<div id="myBtn"><a href="">Click me</a></div>
+<div id="output"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+
+
+<script>
+$(document).ready(function(){
+    $('#myBtn a').click(function (e){
+        var url = 'https://cat-fact.herokuapp.com/facts';
+        //prevents browsers default task and does not override your code.
+        e.preventDefault(); 
+        
+        $.ajax({
+            url: url,
+            type:'GET',
+            dataType: 'json',
+            //hvis det en success modtag data
+            success : function(data){
+                
+                $.each(data, function(key,index){
+                    console.log(data[key].email)
+                    console.log(index.email)
+                    console.log(index['email'])
+                    //console.log(key);
+                    //console.log(index[1].text);
+                    for(let i = 0; i < 10; i++){
+                        $('#output').append('<br>' + index[i].text);
+                    }
+                    
+                })
+
+                
+            },
+            error : function(data){
+                console.log(data);
+                $('#output').append('<br>' + data.statusText);
+            }
+        });
+    });
+});
+    
+</script>

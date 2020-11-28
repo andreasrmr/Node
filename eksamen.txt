@@ -10,3 +10,7 @@ dot notation
 send data gennem browser - query strings og path vars.
 Hvis noget er privat kan man sende gennem body med POST gennem eksempelvis POSTMAN
 Dvs. data vil ikke blive vist i URL.
+
+Skal kunne sætte express op
+
+Argumenter hvorfor vi har valgt en specifik database.

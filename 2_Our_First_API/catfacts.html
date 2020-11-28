@@ -45,22 +45,17 @@
     <!-- 
         2. Show the cat facts in the table. (brug jQuery til at injecte)
     -->
-    <div>
-        Click me
-    </div>
+    <div id="myBtn"><a href="">Click me</a></div>
+    <div id="output"></div>
 
     <script>
-       
-        let result = (data) => {
-            $.ajax({
-                url: 'https://cat-fact.herokuapp.com/facts',
-                dataType: 'json',
-                type: 'GET',
-                contentType: 'application/json',
-                success: data
-            });     
-        };  
-        console.log(result);
+       $(document).ready(function(){
+           $('#myBtn a').click(function(e){
+                var url = 'https://cat-fact.herokuapp.com/facts';
+                e.preventDefault();
+                $('#output').load(url);
+           })
+       })
     </script>
 
         <!-- 

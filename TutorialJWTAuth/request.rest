@@ -1,0 +1,31 @@
+GET http://localhost:8080/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmltIiwiaWF0IjoxNjA0MDU5MDI2LCJleHAiOjE2MDQwNTkwODZ9.hKaZ3Wx1Ng2d8KhmSf4mMXMhRiYlcEODW29W8NMPrdk
+
+###
+
+DELETE http://localhost:8081/logout
+Content-Type: application/json
+
+{
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmltIiwiaWF0IjoxNjAzODI0Njg5fQ.9wGQMrYr11AgICvIASUgt3ZGwMoC5QYsZLOnSFsd0mI"
+}
+
+
+###
+
+POST http://localhost:8081/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmltIiwiaWF0IjoxNjA0MDU4ODgyfQ.uQqmIT2R5VlwiGk8ptUJ-0trhFLD_WWlkrCrCMG1E0w"
+}
+
+
+###
+
+POST http://localhost:8081/login
+Content-Type: application/json
+
+{
+    "username" : "Jim"
+}

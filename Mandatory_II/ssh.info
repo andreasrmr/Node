@@ -1,0 +1,11 @@
+ssh -i ./myKey.pem ec2-user@ec2-3-212-45-130.compute-1.amazonaws.com
+
+mysql -uroot -p
+Enter password
+
+
+CREATE USER 'testUser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'SomePassword';
+CREATE USER 'testUser'@'%' IDENTIFIED WITH mysql_native_password BY 'SomePassword';
+
+
+GRANT ALL PRIVILEGES ON UsersDB.* TO 'testUser'@'localhost';

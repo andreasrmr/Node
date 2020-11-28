@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"> 
+    <!-- removes favicon error -->
+    <link rel="shortcut icon" href="#" />
     <title>Mandatory I</title>
 </head>
 <body>
-    <div>
+    <div id="topnav">
         <nav>
-            <button id="home">home</button>
-            <button id="installation">installation</button>
-            <button id="projektoprettelse">projektoprettelse</button>
+            <button id="nodeInstall">Node Install</button>
+            <button id="nodeProjektoprettelse">Node Projektoprettelse</button>
+            <button id="nodeHttpRequests">Node HTTP Requests</button>
+            <button id="jquery">jQuery</button>
         </nav>
     </div>
+    <div id="undernav"></div>
+
     <div id="content"></div>
 
+    <!-- import jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="index.js"></script>    
+
+    <!-- import index.js fil -->
+    <script type="text/javascript" src="index.js"></script>
+    
+    <!--Click på "Node Install knappen for at content opdateres.-->
+    <script>$("#nodeInstall").click()</script>
 </body>
 </html>

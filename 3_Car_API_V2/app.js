@@ -42,7 +42,6 @@ app.get("/cars", (req, res) => {
         if (error) { throw error }
     
         let cars = []
-        //kan json parse bruges her?
         for(let i = 0; i < rows.length; i++){
             const datarow = { id: rows[i].id, name: rows[i].name, color: rows[i].color }
             cars.push(datarow)

@@ -1,0 +1,12 @@
+&lt;html&gt;
+            &lt;div id="content"&gt;&lt;/div&gt;
+    &lt;/html&gt;
+
+
+
+    &lt;html&gt;
+        &lt;div id="content"&gt;&lt;/div&gt;
+        &lt;script&gt;
+            $("#content").html("&lt;h1&gt;Hello world&lt;/h1&gt;");
+        &lt;/script&gt;
+    &lt;/html&gt;

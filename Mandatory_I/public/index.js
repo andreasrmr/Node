@@ -10,14 +10,18 @@ function getContent(url){
 }
 
 //on click topnavigation
-$("#home").click(function() {
-    getContent("/");
-}); 
-
-$("#installation").click(function() {
-    getContent("/installation");
+$("#nodeInstall").click(function() {
+    getContent("/nodeInstall");
 }); 
     
-$("#projektoprettelse").click(function() {
-    getContent("/projektoprettelse");
+$("#nodeProjektoprettelse").click(function() {
+    getContent("/nodeProjektoprettelse");
+}); 
+
+$("#nodeHttpRequests").click(function() {
+    getContent("/nodeHttpRequests");
+}); 
+
+$("#jquery").click(function() {
+    getContent("/jquery");
 }); 

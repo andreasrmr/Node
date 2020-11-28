@@ -1,7 +1,0 @@
-HTTP            PATH                    Comment
-------          ---------               -------
-GET             /                       start page
-GET             /installation           node installation
-GET             /dependencies           express / en
-GET             /node_modules
-GET             /

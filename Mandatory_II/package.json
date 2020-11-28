@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "devStart": "nodemon app.js",
+    "prodStart": "node app.js"
+  }
+}
